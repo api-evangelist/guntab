@@ -8,10 +8,10 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Payments
+  - E-Commerce
   - Firearms
   - Marketplace
-  - E-Commerce
+  - Payments
 url: >-
   https://raw.githubusercontent.com/api-evangelist/guntab/refs/heads/main/apis.yml
 created: '2025-02-17'
@@ -27,8 +27,8 @@ apis:
     humanURL: https://www.guntab.com/documentation/rest-api
     baseURL: https://www.guntab.com/api
     tags:
-      - Payments
       - Firearms
+      - Payments
       - REST
     properties:
       - type: Documentation
