@@ -5,9 +5,9 @@ GunTab is a payment processing service designed for online firearms marketplaces
 
 ## Scope
 
-- **Type:** Index 
-- **Position:** Consuming 
-- **Access:** 3rd-Party 
+- **Type:** Index
+- **Position:** Consuming
+- **Access:** 3rd-Party
 
 ## Tags:
 
@@ -15,16 +15,17 @@ GunTab is a payment processing service designed for online firearms marketplaces
 
 ## Timestamps
 
-- **Created:** 2025-02-17 
-- **Modified:** 2026-03-16 
+- **Created:** 2025-02-17
+- **Modified:** 2026-04-28
 
 ## APIs
 
 ### GunTab REST API
-The GunTab REST API allows online marketplaces and retail websites to integrate safe and convenient firearms payment processing, empowering customers with compliant transaction capabilities.
+The GunTab REST API allows online marketplaces and retail websites to integrate safe and convenient firearms payment processing, empowering customers with compliant transaction capabilities. Endpoints cover invoice creation, platform/seller confirmations, fulfillment with tracking codes, marketplace user lookup, FFL verification, and webhook subscriptions.
 
 **Human URL:** [https://www.guntab.com/documentation/rest-api](https://www.guntab.com/documentation/rest-api)
 
+**Base URL:** `https://api.guntab.com/v1`
 
 #### Tags:
 
@@ -34,6 +35,7 @@ The GunTab REST API allows online marketplaces and retail websites to integrate 
 
 - [Documentation](https://www.guntab.com/documentation/rest-api)
 - [Authentication](https://www.guntab.com/documentation/rest-api#authentication)
+- [OpenAPI](openapi/guntab-openapi.yml)
 
 ## Common Properties
 

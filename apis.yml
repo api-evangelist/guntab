@@ -15,7 +15,7 @@ tags:
 url: >-
   https://raw.githubusercontent.com/api-evangelist/guntab/refs/heads/main/apis.yml
 created: '2025-02-17'
-modified: '2026-03-16'
+modified: '2026-04-28'
 specificationVersion: '0.19'
 apis:
   - aid: guntab:guntab-api
@@ -25,7 +25,7 @@ apis:
       integrate safe and convenient firearms payment processing, empowering
       customers with compliant transaction capabilities.
     humanURL: https://www.guntab.com/documentation/rest-api
-    baseURL: https://www.guntab.com/api
+    baseURL: https://api.guntab.com/v1
     tags:
       - Firearms
       - Payments
@@ -35,6 +35,8 @@ apis:
         url: https://www.guntab.com/documentation/rest-api
       - type: Authentication
         url: https://www.guntab.com/documentation/rest-api#authentication
+      - type: OpenAPI
+        url: openapi/guntab-openapi.yml
 common:
   - type: Website
     url: https://www.guntab.com/
