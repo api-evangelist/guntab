@@ -1,0 +1,157 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GunTab REST API — Webhooks
+  description: 'GunTab REST API — Webhooks. 3 operations. Lead operation: Create webhook (deprecated). Self-contained Naftiko
+    capability covering one Guntab business surface.'
+  tags:
+  - Guntab
+  - Webhooks
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GUNTAB_API_KEY: GUNTAB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: guntab-webhooks
+    baseUri: https://api.guntab.com/v1
+    description: GunTab REST API — Webhooks business capability. Self-contained, no shared references.
+    resources:
+    - name: webhooks
+      path: /webhooks
+      operations:
+      - name: createwebhook
+        method: POST
+        description: Create webhook (deprecated)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: webhooks-id
+      path: /webhooks/{id}
+      operations:
+      - name: readwebhook
+        method: GET
+        description: Read webhook (deprecated)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+      - name: deletewebhook
+        method: DELETE
+        description: Delete webhook (deprecated)
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.GUNTAB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: guntab-webhooks-rest
+    port: 8080
+    description: REST adapter for GunTab REST API — Webhooks. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/webhooks
+      name: webhooks
+      description: REST surface for webhooks.
+      operations:
+      - method: POST
+        name: createwebhook
+        description: Create webhook (deprecated)
+        call: guntab-webhooks.createwebhook
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/webhooks/{id}
+      name: webhooks-id
+      description: REST surface for webhooks-id.
+      operations:
+      - method: GET
+        name: readwebhook
+        description: Read webhook (deprecated)
+        call: guntab-webhooks.readwebhook
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletewebhook
+        description: Delete webhook (deprecated)
+        call: guntab-webhooks.deletewebhook
+        with:
+          id: rest.id
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: guntab-webhooks-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for GunTab REST API — Webhooks. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: create-webhook-deprecated
+      description: Create webhook (deprecated)
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: guntab-webhooks.createwebhook
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: read-webhook-deprecated
+      description: Read webhook (deprecated)
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: guntab-webhooks.readwebhook
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-webhook-deprecated
+      description: Delete webhook (deprecated)
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: guntab-webhooks.deletewebhook
+      with:
+        id: tools.id
+      outputParameters:
+      - type: object
+        mapping: $.

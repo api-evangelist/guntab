@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GunTab REST API — Users
+  description: 'GunTab REST API — Users. 1 operations. Lead operation: Read a user. Self-contained Naftiko capability covering
+    one Guntab business surface.'
+  tags:
+  - Guntab
+  - Users
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GUNTAB_API_KEY: GUNTAB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: guntab-users
+    baseUri: https://api.guntab.com/v1
+    description: GunTab REST API — Users business capability. Self-contained, no shared references.
+    resources:
+    - name: users-email
+      path: /users/{email}
+      operations:
+      - name: readuser
+        method: GET
+        description: Read a user
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: email
+          in: path
+          type: string
+          description: URL-encoded email address.
+          required: true
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.GUNTAB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: guntab-users-rest
+    port: 8080
+    description: REST adapter for GunTab REST API — Users. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/users/{email}
+      name: users-email
+      description: REST surface for users-email.
+      operations:
+      - method: GET
+        name: readuser
+        description: Read a user
+        call: guntab-users.readuser
+        with:
+          email: rest.email
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: guntab-users-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for GunTab REST API — Users. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: read-user
+      description: Read a user
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: guntab-users.readuser
+      with:
+        email: tools.email
+      outputParameters:
+      - type: object
+        mapping: $.

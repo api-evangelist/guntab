@@ -1,0 +1,89 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: GunTab REST API — FFLs
+  description: 'GunTab REST API — FFLs. 1 operations. Lead operation: Trigger FFL verification call. Self-contained Naftiko
+    capability covering one Guntab business surface.'
+  tags:
+  - Guntab
+  - FFLs
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    GUNTAB_API_KEY: GUNTAB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: guntab-ffls
+    baseUri: https://api.guntab.com/v1
+    description: GunTab REST API — FFLs business capability. Self-contained, no shared references.
+    resources:
+    - name: ffls-license_number-claim_verification_code_calls
+      path: /ffls/{license_number}/claim_verification_code_calls
+      operations:
+      - name: callfflverification
+        method: POST
+        description: Trigger FFL verification call
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: license_number
+          in: path
+          type: string
+          description: FFL license number.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: Authorization
+      value: '{{env.GUNTAB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: guntab-ffls-rest
+    port: 8080
+    description: REST adapter for GunTab REST API — FFLs. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/ffls/{license-number}/claim-verification-code-calls
+      name: ffls-license-number-claim-verification-code-calls
+      description: REST surface for ffls-license_number-claim_verification_code_calls.
+      operations:
+      - method: POST
+        name: callfflverification
+        description: Trigger FFL verification call
+        call: guntab-ffls.callfflverification
+        with:
+          license_number: rest.license_number
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: guntab-ffls-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for GunTab REST API — FFLs. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: trigger-ffl-verification-call
+      description: Trigger FFL verification call
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: guntab-ffls.callfflverification
+      with:
+        license_number: tools.license_number
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
