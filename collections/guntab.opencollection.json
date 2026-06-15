@@ -1,0 +1,257 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GunTab REST API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Invoices",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.guntab.com/v1/invoices",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new GunTab invoice (payment request) for a firearms transaction."
+        },
+        {
+          "info": {
+            "name": "Read an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.guntab.com/v1/invoices/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique invoice identifier."
+              }
+            ]
+          },
+          "docs": "Read an invoice"
+        },
+        {
+          "info": {
+            "name": "Cancel an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.guntab.com/v1/invoices/:id/cancels",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique invoice identifier."
+              }
+            ]
+          },
+          "docs": "Cancel an invoice"
+        },
+        {
+          "info": {
+            "name": "Confirm an invoice as the platform",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.guntab.com/v1/invoices/:id/platform_confirmations",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique invoice identifier."
+              }
+            ]
+          },
+          "docs": "Confirm an invoice as the platform"
+        },
+        {
+          "info": {
+            "name": "Confirm an invoice as the seller",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.guntab.com/v1/invoices/:id/seller_confirmations",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique invoice identifier."
+              }
+            ]
+          },
+          "docs": "Confirm an invoice as the seller"
+        },
+        {
+          "info": {
+            "name": "Fulfill an invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.guntab.com/v1/invoices/:id/fulfillments",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path",
+                "description": "Unique invoice identifier."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Records fulfillment with a tracking code (or pickup designation)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.guntab.com/v1/users/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "URL-encoded email address."
+              }
+            ]
+          },
+          "docs": "Marketplace-only endpoint to look up a user by URL-encoded email."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "FFLs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Trigger FFL verification call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.guntab.com/v1/ffls/:license_number/claim_verification_code_calls",
+            "params": [
+              {
+                "name": "license_number",
+                "value": "",
+                "type": "path",
+                "description": "FFL license number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls the FFL to provide a claim verification code (marketplace, alpha)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create webhook (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.guntab.com/v1/webhooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create webhook (deprecated)"
+        },
+        {
+          "info": {
+            "name": "Read webhook (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.guntab.com/v1/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Read webhook (deprecated)"
+        },
+        {
+          "info": {
+            "name": "Delete webhook (deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.guntab.com/v1/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete webhook (deprecated)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
