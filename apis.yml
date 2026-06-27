@@ -38,7 +38,7 @@ common:
     url: https://www.guntab.com/
   - type: Documentation
     url: https://www.guntab.com/documentation/rest-api
-  - type: SignUp
+  - type: Signup
     url: https://www.guntab.com/sign-up
 maintainers:
   - FN: Kin Lane
