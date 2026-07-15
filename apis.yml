@@ -34,6 +34,8 @@ apis:
       - type: OpenAPI
         url: openapi/guntab-openapi.yml
 common:
+  - type: AgenticAccess
+    url: agentic-access/guntab-agentic-access.yml
   - type: DomainSecurity
     url: security/guntab-domain-security.yml
   - type: Authentication
