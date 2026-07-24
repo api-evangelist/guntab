@@ -1,0 +1,96 @@
+openapi: 3.0.3
+info:
+  title: GunTab REST FFLs Webhooks API
+  description: The GunTab REST API allows online firearms marketplaces and retail websites to integrate safe and convenient firearms payment processing, manage invoices (payment requests), confirm and fulfill orders, validate FFLs, and receive webhook events for transaction lifecycle changes.
+  version: 1.0.0
+  contact:
+    name: GunTab
+    url: https://www.guntab.com/documentation/rest-api
+  license:
+    name: Proprietary
+servers:
+- url: https://api.guntab.com/v1
+  description: Production
+security:
+- TokenAuth: []
+tags:
+- name: Webhooks
+  description: Webhook subscription management (deprecated)
+paths:
+  /webhooks:
+    post:
+      tags:
+      - Webhooks
+      summary: Create webhook (deprecated)
+      deprecated: true
+      operationId: createWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - url
+              properties:
+                url:
+                  type: string
+                  format: uri
+      responses:
+        '201':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /webhooks/{id}:
+    get:
+      tags:
+      - Webhooks
+      summary: Read webhook (deprecated)
+      deprecated: true
+      operationId: readWebhook
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Webhook retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    delete:
+      tags:
+      - Webhooks
+      summary: Delete webhook (deprecated)
+      deprecated: true
+      operationId: deleteWebhook
+      parameters:
+      - in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Webhook deleted
+components:
+  schemas:
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Format: `Token {token_uuid}` issued to verified email users.'

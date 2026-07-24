@@ -1,0 +1,54 @@
+openapi: 3.0.3
+info:
+  title: GunTab REST FFLs API
+  description: The GunTab REST API allows online firearms marketplaces and retail websites to integrate safe and convenient firearms payment processing, manage invoices (payment requests), confirm and fulfill orders, validate FFLs, and receive webhook events for transaction lifecycle changes.
+  version: 1.0.0
+  contact:
+    name: GunTab
+    url: https://www.guntab.com/documentation/rest-api
+  license:
+    name: Proprietary
+servers:
+- url: https://api.guntab.com/v1
+  description: Production
+security:
+- TokenAuth: []
+tags:
+- name: FFLs
+  description: Federal Firearms License verification
+paths:
+  /ffls/{license_number}/claim_verification_code_calls:
+    post:
+      tags:
+      - FFLs
+      summary: Trigger FFL verification call
+      description: Calls the FFL to provide a claim verification code (marketplace, alpha).
+      operationId: callFflVerification
+      parameters:
+      - in: path
+        name: license_number
+        required: true
+        schema:
+          type: string
+        description: FFL license number.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                claim_verification_code:
+                  type: string
+                  minLength: 1
+                  maxLength: 10
+      responses:
+        '202':
+          description: Verification call queued
+components:
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Format: `Token {token_uuid}` issued to verified email users.'
