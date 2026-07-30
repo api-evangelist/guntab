@@ -4,7 +4,20 @@ description: >-
   GunTab is a payment processing service designed for online firearms marketplaces and retail websites. The GunTab API
   enables businesses to integrate safe and convenient firearms transaction payments into their platforms.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/guntab.png
 tags:
   - E-Commerce
   - Firearms
@@ -15,24 +28,62 @@ created: '2025-02-17'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: guntab:guntab-api
-    name: GunTab REST API
-    description: >-
-      The GunTab REST API allows online marketplaces and retail websites to integrate safe and convenient firearms
-      payment processing, empowering customers with compliant transaction capabilities.
-    humanURL: https://www.guntab.com/documentation/rest-api
-    baseURL: https://api.guntab.com/v1
-    tags:
-      - Firearms
-      - Payments
-      - REST
-    properties:
-      - type: Documentation
-        url: https://www.guntab.com/documentation/rest-api
-      - type: Authentication
-        url: https://www.guntab.com/documentation/rest-api#authentication
-      - type: OpenAPI
-        url: openapi/guntab-openapi.yml
+- aid: guntab:guntab-ffls-api
+  name: GunTab FFLs API
+  description: Federal Firearms License verification
+  humanURL: https://www.guntab.com/documentation/rest-api
+  baseURL: https://api.guntab.com/v1
+  tags:
+  - FFLs
+  properties:
+  - type: OpenAPI
+    url: openapi/guntab-ffls-api-openapi.yml
+  - type: Documentation
+    url: https://www.guntab.com/documentation/rest-api
+  - type: Authentication
+    url: https://www.guntab.com/documentation/rest-api#authentication
+- aid: guntab:guntab-invoices-api
+  name: GunTab Invoices API
+  description: Payment request lifecycle management
+  humanURL: https://www.guntab.com/documentation/rest-api
+  baseURL: https://api.guntab.com/v1
+  tags:
+  - Invoices
+  properties:
+  - type: OpenAPI
+    url: openapi/guntab-invoices-api-openapi.yml
+  - type: Documentation
+    url: https://www.guntab.com/documentation/rest-api
+  - type: Authentication
+    url: https://www.guntab.com/documentation/rest-api#authentication
+- aid: guntab:guntab-users-api
+  name: GunTab Users API
+  description: Marketplace user lookup
+  humanURL: https://www.guntab.com/documentation/rest-api
+  baseURL: https://api.guntab.com/v1
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/guntab-users-api-openapi.yml
+  - type: Documentation
+    url: https://www.guntab.com/documentation/rest-api
+  - type: Authentication
+    url: https://www.guntab.com/documentation/rest-api#authentication
+- aid: guntab:guntab-webhooks-api
+  name: GunTab Webhooks API
+  description: Webhook subscription management (deprecated)
+  humanURL: https://www.guntab.com/documentation/rest-api
+  baseURL: https://api.guntab.com/v1
+  tags:
+  - Webhooks
+  properties:
+  - type: OpenAPI
+    url: openapi/guntab-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://www.guntab.com/documentation/rest-api
+  - type: Authentication
+    url: https://www.guntab.com/documentation/rest-api#authentication
 common:
   - type: AgenticAccess
     url: agentic-access/guntab-agentic-access.yml
