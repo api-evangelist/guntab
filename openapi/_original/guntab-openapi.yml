@@ -1,0 +1,393 @@
+openapi: 3.0.3
+info:
+  title: GunTab REST API
+  description: >-
+    The GunTab REST API allows online firearms marketplaces and retail websites
+    to integrate safe and convenient firearms payment processing, manage
+    invoices (payment requests), confirm and fulfill orders, validate FFLs, and
+    receive webhook events for transaction lifecycle changes.
+  version: "1.0.0"
+  contact:
+    name: GunTab
+    url: https://www.guntab.com/documentation/rest-api
+  license:
+    name: Proprietary
+servers:
+  - url: https://api.guntab.com/v1
+    description: Production
+tags:
+  - name: Invoices
+    description: Payment request lifecycle management
+  - name: Users
+    description: Marketplace user lookup
+  - name: FFLs
+    description: Federal Firearms License verification
+  - name: Webhooks
+    description: Webhook subscription management (deprecated)
+security:
+  - TokenAuth: []
+paths:
+  /invoices:
+    post:
+      tags: [Invoices]
+      summary: Create an invoice
+      description: Creates a new GunTab invoice (payment request) for a firearms transaction.
+      operationId: createInvoice
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InvoiceCreateRequest'
+      responses:
+        '201':
+          description: Invoice created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '400':
+          $ref: '#/components/responses/Error'
+        '401':
+          $ref: '#/components/responses/Error'
+  /invoices/{id}:
+    get:
+      tags: [Invoices]
+      summary: Read an invoice
+      operationId: readInvoice
+      parameters:
+        - $ref: '#/components/parameters/InvoiceId'
+      responses:
+        '200':
+          description: Invoice retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+        '404':
+          $ref: '#/components/responses/Error'
+  /invoices/{id}/cancels:
+    post:
+      tags: [Invoices]
+      summary: Cancel an invoice
+      operationId: cancelInvoice
+      parameters:
+        - $ref: '#/components/parameters/InvoiceId'
+      responses:
+        '200':
+          description: Invoice cancelled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+  /invoices/{id}/platform_confirmations:
+    post:
+      tags: [Invoices]
+      summary: Confirm an invoice as the platform
+      operationId: platformConfirmInvoice
+      parameters:
+        - $ref: '#/components/parameters/InvoiceId'
+      responses:
+        '200':
+          description: Platform confirmation recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+  /invoices/{id}/seller_confirmations:
+    post:
+      tags: [Invoices]
+      summary: Confirm an invoice as the seller
+      operationId: sellerConfirmInvoice
+      parameters:
+        - $ref: '#/components/parameters/InvoiceId'
+      responses:
+        '200':
+          description: Seller confirmation recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+  /invoices/{id}/fulfillments:
+    post:
+      tags: [Invoices]
+      summary: Fulfill an invoice
+      description: Records fulfillment with a tracking code (or pickup designation).
+      operationId: fulfillInvoice
+      parameters:
+        - $ref: '#/components/parameters/InvoiceId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tracking_code:
+                  type: string
+                  description: Carrier tracking code (required unless pickup).
+      responses:
+        '200':
+          description: Fulfillment recorded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Invoice'
+  /users/{email}:
+    get:
+      tags: [Users]
+      summary: Read a user
+      description: Marketplace-only endpoint to look up a user by URL-encoded email.
+      operationId: readUser
+      parameters:
+        - in: path
+          name: email
+          required: true
+          schema:
+            type: string
+            format: email
+          description: URL-encoded email address.
+      responses:
+        '200':
+          description: User found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          $ref: '#/components/responses/Error'
+  /ffls/{license_number}/claim_verification_code_calls:
+    post:
+      tags: [FFLs]
+      summary: Trigger FFL verification call
+      description: Calls the FFL to provide a claim verification code (marketplace, alpha).
+      operationId: callFflVerification
+      parameters:
+        - in: path
+          name: license_number
+          required: true
+          schema:
+            type: string
+          description: FFL license number.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                claim_verification_code:
+                  type: string
+                  minLength: 1
+                  maxLength: 10
+      responses:
+        '202':
+          description: Verification call queued
+  /webhooks:
+    post:
+      tags: [Webhooks]
+      summary: Create webhook (deprecated)
+      deprecated: true
+      operationId: createWebhook
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [url]
+              properties:
+                url:
+                  type: string
+                  format: uri
+      responses:
+        '201':
+          description: Webhook created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+  /webhooks/{id}:
+    get:
+      tags: [Webhooks]
+      summary: Read webhook (deprecated)
+      deprecated: true
+      operationId: readWebhook
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Webhook retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Webhook'
+    delete:
+      tags: [Webhooks]
+      summary: Delete webhook (deprecated)
+      deprecated: true
+      operationId: deleteWebhook
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Webhook deleted
+components:
+  securitySchemes:
+    TokenAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Format: `Token {token_uuid}` issued to verified email users.'
+  parameters:
+    InvoiceId:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+      description: Unique invoice identifier.
+  responses:
+    Error:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    InvoiceCreateRequest:
+      type: object
+      required: [merchandise_amount_cents, shipping_amount_cents, listings]
+      properties:
+        buyer_email:
+          type: string
+          format: email
+        buyer_email_notifications_disabled:
+          type: boolean
+        manual_sales_tax_amount_cents:
+          type: integer
+        marketplace_buyer_fee_amount_cents:
+          type: integer
+        marketplace_seller_fee_amount_cents:
+          type: integer
+        merchandise_amount_cents:
+          type: integer
+        payment_method_convenience_fee_paid_by:
+          type: string
+          enum: [buyer, seller]
+        platform_confirmation_required:
+          type: boolean
+        receiving_address:
+          $ref: '#/components/schemas/Address'
+        receiving_ffl_license_number:
+          type: string
+        redirect_url:
+          type: string
+          format: uri
+        seller_confirmation_required:
+          type: boolean
+        seller_email:
+          type: string
+          format: email
+          description: Required for marketplace integrations.
+        seller_order_id:
+          type: string
+        service_fee_paid_by:
+          type: string
+          enum: [buyer, seller, split]
+        shipping_amount_cents:
+          type: integer
+        listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Listing'
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        merchandise_amount_cents:
+          type: integer
+        shipping_amount_cents:
+          type: integer
+        buyer_email:
+          type: string
+        seller_email:
+          type: string
+        listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Listing'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Listing:
+      type: object
+      required: [amount_cents, description, listing_type_id, quantity, title]
+      properties:
+        amount_cents:
+          type: integer
+        description:
+          type: string
+        external_id:
+          type: string
+        listing_type_id:
+          type: integer
+        quantity:
+          type: integer
+        serial_number:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        state_code:
+          type: string
+        zip:
+          type: string
+    User:
+      type: object
+      properties:
+        email:
+          type: string
+          format: email
+        verified:
+          type: boolean
+    Webhook:
+      type: object
+      properties:
+        id:
+          type: string
+        url:
+          type: string
+          format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string

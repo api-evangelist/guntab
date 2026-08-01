@@ -1,0 +1,20 @@
+{
+  "provider": "guntab",
+  "sources": [
+    "guntab-ffls-api-openapi.yml",
+    "guntab-invoices-api-openapi.yml",
+    "guntab-users-api-openapi.yml",
+    "guntab-webhooks-api-openapi.yml"
+  ],
+  "outputs": [
+    "guntab-ffls-api-openapi.yml",
+    "guntab-invoices-api-openapi.yml",
+    "guntab-users-api-openapi.yml",
+    "guntab-webhooks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
