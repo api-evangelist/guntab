@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GunTab REST FFLs API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "FFLs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Trigger FFL verification call",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.guntab.com/v1/ffls/:license_number/claim_verification_code_calls",
+            "params": [
+              {
+                "name": "license_number",
+                "value": "",
+                "type": "path",
+                "description": "FFL license number."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Calls the FFL to provide a claim verification code (marketplace, alpha)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

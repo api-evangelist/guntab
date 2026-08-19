@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "GunTab REST FFLs Users API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.guntab.com/v1/users/:email",
+            "params": [
+              {
+                "name": "email",
+                "value": "",
+                "type": "path",
+                "description": "URL-encoded email address."
+              }
+            ]
+          },
+          "docs": "Marketplace-only endpoint to look up a user by URL-encoded email."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

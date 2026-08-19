@@ -1,0 +1,799 @@
+{
+  "item": [
+    {
+      "id": "0a59b327-75e9-41c0-a05a-11e01f43427a",
+      "name": "Invoices",
+      "description": {
+        "content": "Payment request lifecycle management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2c341852-7c07-418c-8231-6b96e84680e7",
+          "name": "Create an invoice",
+          "request": {
+            "name": "Create an invoice",
+            "description": {
+              "content": "Creates a new GunTab invoice (payment request) for a firearms transaction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"merchandise_amount_cents\": \"<integer>\",\n  \"shipping_amount_cents\": \"<integer>\",\n  \"listings\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"buyer_email\": \"<email>\",\n  \"buyer_email_notifications_disabled\": \"<boolean>\",\n  \"manual_sales_tax_amount_cents\": \"<integer>\",\n  \"marketplace_buyer_fee_amount_cents\": \"<integer>\",\n  \"marketplace_seller_fee_amount_cents\": \"<integer>\",\n  \"payment_method_convenience_fee_paid_by\": \"<string>\",\n  \"platform_confirmation_required\": \"<boolean>\",\n  \"receiving_address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_code\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"receiving_ffl_license_number\": \"<string>\",\n  \"redirect_url\": \"<uri>\",\n  \"seller_confirmation_required\": \"<boolean>\",\n  \"seller_email\": \"<email>\",\n  \"seller_order_id\": \"<string>\",\n  \"service_fee_paid_by\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f3418e0b-5f4d-441a-b4a2-e57ede92b494",
+              "name": "Invoice created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchandise_amount_cents\": \"<integer>\",\n  \"shipping_amount_cents\": \"<integer>\",\n  \"listings\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"buyer_email\": \"<email>\",\n  \"buyer_email_notifications_disabled\": \"<boolean>\",\n  \"manual_sales_tax_amount_cents\": \"<integer>\",\n  \"marketplace_buyer_fee_amount_cents\": \"<integer>\",\n  \"marketplace_seller_fee_amount_cents\": \"<integer>\",\n  \"payment_method_convenience_fee_paid_by\": \"<string>\",\n  \"platform_confirmation_required\": \"<boolean>\",\n  \"receiving_address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_code\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"receiving_ffl_license_number\": \"<string>\",\n  \"redirect_url\": \"<uri>\",\n  \"seller_confirmation_required\": \"<boolean>\",\n  \"seller_email\": \"<email>\",\n  \"seller_order_id\": \"<string>\",\n  \"service_fee_paid_by\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"merchandise_amount_cents\": 9569,\n  \"shipping_amount_cents\": 2227,\n  \"buyer_email\": \"string\",\n  \"seller_email\": \"string\",\n  \"listings\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"created_at\": \"1977-09-05T18:31:45.066Z\",\n  \"updated_at\": \"1949-08-12T11:39:14.001Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6757f555-f93d-40d3-a756-4583e1e844bd",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchandise_amount_cents\": \"<integer>\",\n  \"shipping_amount_cents\": \"<integer>\",\n  \"listings\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"buyer_email\": \"<email>\",\n  \"buyer_email_notifications_disabled\": \"<boolean>\",\n  \"manual_sales_tax_amount_cents\": \"<integer>\",\n  \"marketplace_buyer_fee_amount_cents\": \"<integer>\",\n  \"marketplace_seller_fee_amount_cents\": \"<integer>\",\n  \"payment_method_convenience_fee_paid_by\": \"<string>\",\n  \"platform_confirmation_required\": \"<boolean>\",\n  \"receiving_address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_code\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"receiving_ffl_license_number\": \"<string>\",\n  \"redirect_url\": \"<uri>\",\n  \"seller_confirmation_required\": \"<boolean>\",\n  \"seller_email\": \"<email>\",\n  \"seller_order_id\": \"<string>\",\n  \"service_fee_paid_by\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5fb36c7-c9ac-4da9-802c-84223d3e67de",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"merchandise_amount_cents\": \"<integer>\",\n  \"shipping_amount_cents\": \"<integer>\",\n  \"listings\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"buyer_email\": \"<email>\",\n  \"buyer_email_notifications_disabled\": \"<boolean>\",\n  \"manual_sales_tax_amount_cents\": \"<integer>\",\n  \"marketplace_buyer_fee_amount_cents\": \"<integer>\",\n  \"marketplace_seller_fee_amount_cents\": \"<integer>\",\n  \"payment_method_convenience_fee_paid_by\": \"<string>\",\n  \"platform_confirmation_required\": \"<boolean>\",\n  \"receiving_address\": {\n    \"line1\": \"<string>\",\n    \"line2\": \"<string>\",\n    \"city\": \"<string>\",\n    \"state_code\": \"<string>\",\n    \"zip\": \"<string>\"\n  },\n  \"receiving_ffl_license_number\": \"<string>\",\n  \"redirect_url\": \"<uri>\",\n  \"seller_confirmation_required\": \"<boolean>\",\n  \"seller_email\": \"<email>\",\n  \"seller_order_id\": \"<string>\",\n  \"service_fee_paid_by\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "08ca283f-d644-48b7-9dfc-b248f6cca679",
+          "name": "Read an invoice",
+          "request": {
+            "name": "Read an invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique invoice identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f5f39f2c-66c9-4ce8-b92e-fb4e9aa3ccf3",
+              "name": "Invoice retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique invoice identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"merchandise_amount_cents\": 8138,\n  \"shipping_amount_cents\": 5754,\n  \"buyer_email\": \"string\",\n  \"seller_email\": \"string\",\n  \"listings\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"created_at\": \"2006-10-01T00:11:50.899Z\",\n  \"updated_at\": \"1959-06-01T04:29:48.115Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ea0a169-2176-4f51-9255-3287e2dbfb5a",
+              "name": "Error response",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique invoice identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    \"string\",\n    \"string\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "42e45cb2-115d-47cf-9807-65ef2baf3f9b",
+          "name": "Cancel an invoice",
+          "request": {
+            "name": "Cancel an invoice",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices",
+                ":id",
+                "cancels"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique invoice identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "31d830f1-1867-4900-a102-df3745f430f1",
+              "name": "Invoice cancelled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":id",
+                    "cancels"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique invoice identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"merchandise_amount_cents\": 8138,\n  \"shipping_amount_cents\": 5754,\n  \"buyer_email\": \"string\",\n  \"seller_email\": \"string\",\n  \"listings\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"created_at\": \"2006-10-01T00:11:50.899Z\",\n  \"updated_at\": \"1959-06-01T04:29:48.115Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b63147d5-bcb1-4568-b35f-769f0179a8d1",
+          "name": "Confirm an invoice as the platform",
+          "request": {
+            "name": "Confirm an invoice as the platform",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices",
+                ":id",
+                "platform_confirmations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique invoice identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "130b1567-2282-4ff8-99bd-34534181587f",
+              "name": "Platform confirmation recorded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":id",
+                    "platform_confirmations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique invoice identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"merchandise_amount_cents\": 8138,\n  \"shipping_amount_cents\": 5754,\n  \"buyer_email\": \"string\",\n  \"seller_email\": \"string\",\n  \"listings\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"created_at\": \"2006-10-01T00:11:50.899Z\",\n  \"updated_at\": \"1959-06-01T04:29:48.115Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5f4b877a-0ffc-44b7-8ddb-36ef8f7524ae",
+          "name": "Confirm an invoice as the seller",
+          "request": {
+            "name": "Confirm an invoice as the seller",
+            "description": {},
+            "url": {
+              "path": [
+                "invoices",
+                ":id",
+                "seller_confirmations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique invoice identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "37022c20-6479-48a0-8147-fa9d6a39e09e",
+              "name": "Seller confirmation recorded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":id",
+                    "seller_confirmations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique invoice identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"merchandise_amount_cents\": 8138,\n  \"shipping_amount_cents\": 5754,\n  \"buyer_email\": \"string\",\n  \"seller_email\": \"string\",\n  \"listings\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"created_at\": \"2006-10-01T00:11:50.899Z\",\n  \"updated_at\": \"1959-06-01T04:29:48.115Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "418b7f74-ba13-46f1-b874-9a7e4f9e1723",
+          "name": "Fulfill an invoice",
+          "request": {
+            "name": "Fulfill an invoice",
+            "description": {
+              "content": "Records fulfillment with a tracking code (or pickup designation).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":id",
+                "fulfillments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) Unique invoice identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tracking_code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1a6ce42a-35c2-4cf4-a9b3-b3aab76a84e2",
+              "name": "Fulfillment recorded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":id",
+                    "fulfillments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) Unique invoice identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tracking_code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"status\": \"string\",\n  \"merchandise_amount_cents\": 8138,\n  \"shipping_amount_cents\": 5754,\n  \"buyer_email\": \"string\",\n  \"seller_email\": \"string\",\n  \"listings\": [\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"amount_cents\": \"<integer>\",\n      \"description\": \"<string>\",\n      \"listing_type_id\": \"<integer>\",\n      \"quantity\": \"<integer>\",\n      \"title\": \"<string>\",\n      \"external_id\": \"<string>\",\n      \"serial_number\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"created_at\": \"2006-10-01T00:11:50.899Z\",\n  \"updated_at\": \"1959-06-01T04:29:48.115Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.guntab.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "10d8fde6-fff1-43e6-9fe8-fd8ef7db9213",
+    "name": "GunTab REST FFLs Invoices API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The GunTab REST API allows online firearms marketplaces and retail websites to integrate safe and convenient firearms payment processing, manage invoices (payment requests), confirm and fulfill orders, validate FFLs, and receive webhook events for transaction lifecycle changes.\n\nContact Support:\n Name: GunTab",
+      "type": "text/plain"
+    }
+  }
+}

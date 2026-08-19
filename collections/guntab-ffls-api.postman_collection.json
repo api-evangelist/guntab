@@ -1,0 +1,160 @@
+{
+  "item": [
+    {
+      "id": "235855c2-3765-42d3-b360-2dac1fa65ec6",
+      "name": "FFLs",
+      "description": {
+        "content": "Federal Firearms License verification",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9b549639-f7a3-4484-ac28-b898ea59e8df",
+          "name": "Trigger FFL verification call",
+          "request": {
+            "name": "Trigger FFL verification call",
+            "description": {
+              "content": "Calls the FFL to provide a claim verification code (marketplace, alpha).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ffls",
+                ":license_number",
+                "claim_verification_code_calls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "license_number",
+                  "description": "(Required) FFL license number."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"claim_verification_code\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ec75270e-723a-4cda-8c9a-7cfafbcd1c6f",
+              "name": "Verification call queued",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ffls",
+                    ":license_number",
+                    "claim_verification_code_calls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "license_number",
+                      "description": "(Required) FFL license number."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"claim_verification_code\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.guntab.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8dd7b922-82ab-4fd3-b4a5-ecf815522e56",
+    "name": "GunTab REST FFLs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The GunTab REST API allows online firearms marketplaces and retail websites to integrate safe and convenient firearms payment processing, manage invoices (payment requests), confirm and fulfill orders, validate FFLs, and receive webhook events for transaction lifecycle changes.\n\nContact Support:\n Name: GunTab",
+      "type": "text/plain"
+    }
+  }
+}
