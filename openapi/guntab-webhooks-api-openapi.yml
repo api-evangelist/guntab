@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: GunTab REST FFLs Webhooks API
+  title: GunTab REST Webhooks API
   description: The GunTab REST API allows online firearms marketplaces and retail websites to integrate safe and convenient firearms payment processing, manage invoices (payment requests), confirm and fulfill orders, validate FFLs, and receive webhook events for transaction lifecycle changes.
   version: 1.0.0
   contact:

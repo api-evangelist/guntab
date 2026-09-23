@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: GunTab REST FFLs Invoices API
+  title: GunTab REST Invoices API
   description: The GunTab REST API allows online firearms marketplaces and retail websites to integrate safe and convenient firearms payment processing, manage invoices (payment requests), confirm and fulfill orders, validate FFLs, and receive webhook events for transaction lifecycle changes.
   version: 1.0.0
   contact:
@@ -131,31 +131,6 @@ paths:
                 $ref: '#/components/schemas/Invoice'
 components:
   schemas:
-    Invoice:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        merchandise_amount_cents:
-          type: integer
-        shipping_amount_cents:
-          type: integer
-        buyer_email:
-          type: string
-        seller_email:
-          type: string
-        listings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Listing'
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
     Address:
       type: object
       properties:
@@ -169,13 +144,6 @@ components:
           type: string
         zip:
           type: string
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
     InvoiceCreateRequest:
       type: object
       required:
@@ -256,6 +224,38 @@ components:
         url:
           type: string
           format: uri
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        merchandise_amount_cents:
+          type: integer
+        shipping_amount_cents:
+          type: integer
+        buyer_email:
+          type: string
+        seller_email:
+          type: string
+        listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Listing'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
   responses:
     Error:
       description: Error response

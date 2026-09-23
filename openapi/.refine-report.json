@@ -1,10 +1,7 @@
 {
   "provider": "guntab",
   "sources": [
-    "guntab-ffls-api-openapi.yml",
-    "guntab-invoices-api-openapi.yml",
-    "guntab-users-api-openapi.yml",
-    "guntab-webhooks-api-openapi.yml"
+    "_original/guntab-openapi.yml"
   ],
   "outputs": [
     "guntab-ffls-api-openapi.yml",
@@ -15,6 +12,15 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "guntab-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "guntab-ffls-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "guntab-invoices-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "guntab-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "guntab-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
