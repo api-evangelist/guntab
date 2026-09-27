@@ -130,7 +130,29 @@ paths:
               schema:
                 $ref: '#/components/schemas/Invoice'
 components:
+  responses:
+    Error:
+      description: Error response
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    InvoiceId:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+      description: Unique invoice identifier.
   schemas:
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
     Address:
       type: object
       properties:
@@ -144,6 +166,32 @@ components:
           type: string
         zip:
           type: string
+    Listing:
+      type: object
+      required:
+      - amount_cents
+      - description
+      - listing_type_id
+      - quantity
+      - title
+      properties:
+        amount_cents:
+          type: integer
+        description:
+          type: string
+        external_id:
+          type: string
+        listing_type_id:
+          type: integer
+        quantity:
+          type: integer
+        serial_number:
+          type: string
+        title:
+          type: string
+        url:
+          type: string
+          format: uri
     InvoiceCreateRequest:
       type: object
       required:
@@ -198,39 +246,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Listing'
-    Listing:
-      type: object
-      required:
-      - amount_cents
-      - description
-      - listing_type_id
-      - quantity
-      - title
-      properties:
-        amount_cents:
-          type: integer
-        description:
-          type: string
-        external_id:
-          type: string
-        listing_type_id:
-          type: integer
-        quantity:
-          type: integer
-        serial_number:
-          type: string
-        title:
-          type: string
-        url:
-          type: string
-          format: uri
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
     Invoice:
       type: object
       properties:
@@ -256,21 +271,6 @@ components:
         updated_at:
           type: string
           format: date-time
-  responses:
-    Error:
-      description: Error response
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    InvoiceId:
-      in: path
-      name: id
-      required: true
-      schema:
-        type: string
-      description: Unique invoice identifier.
   securitySchemes:
     TokenAuth:
       type: apiKey
