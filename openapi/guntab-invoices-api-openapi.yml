@@ -131,6 +131,51 @@ paths:
                 $ref: '#/components/schemas/Invoice'
 components:
   schemas:
+    Invoice:
+      type: object
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+        merchandise_amount_cents:
+          type: integer
+        shipping_amount_cents:
+          type: integer
+        buyer_email:
+          type: string
+        seller_email:
+          type: string
+        listings:
+          type: array
+          items:
+            $ref: '#/components/schemas/Listing'
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Address:
+      type: object
+      properties:
+        line1:
+          type: string
+        line2:
+          type: string
+        city:
+          type: string
+        state_code:
+          type: string
+        zip:
+          type: string
+    ErrorResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
     Listing:
       type: object
       required:
@@ -157,26 +202,6 @@ components:
         url:
           type: string
           format: uri
-    Address:
-      type: object
-      properties:
-        line1:
-          type: string
-        line2:
-          type: string
-        city:
-          type: string
-        state_code:
-          type: string
-        zip:
-          type: string
-    ErrorResponse:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            type: string
     InvoiceCreateRequest:
       type: object
       required:
@@ -231,31 +256,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Listing'
-    Invoice:
-      type: object
-      properties:
-        id:
-          type: string
-        status:
-          type: string
-        merchandise_amount_cents:
-          type: integer
-        shipping_amount_cents:
-          type: integer
-        buyer_email:
-          type: string
-        seller_email:
-          type: string
-        listings:
-          type: array
-          items:
-            $ref: '#/components/schemas/Listing'
-        created_at:
-          type: string
-          format: date-time
-        updated_at:
-          type: string
-          format: date-time
   parameters:
     InvoiceId:
       in: path
