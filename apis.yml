@@ -38,7 +38,7 @@ tags:
   - Payments
 url: https://raw.githubusercontent.com/api-evangelist/guntab/refs/heads/main/apis.yml
 created: '2025-02-17'
-modified: '2026-05-19'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: guntab:guntab-ffls-api
@@ -102,6 +102,10 @@ apis:
   - type: Authentication
     url: https://www.guntab.com/documentation/rest-api#authentication
 common:
+  - url: https://www.guntab.com/insights/
+    type: Blog
+  - url: https://www.guntab.com/insights/rss/
+    type: BlogRSS
   - type: AgenticAccess
     url: agentic-access/guntab-agentic-access.yml
   - type: DomainSecurity
