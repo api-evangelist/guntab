@@ -102,6 +102,12 @@ apis:
   - type: Authentication
     url: https://www.guntab.com/documentation/rest-api#authentication
 common:
+  - type: Plans
+    url: plans/guntab-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/guntab-rate-limits.yml
+  - type: FinOps
+    url: finops/guntab-finops.yml
   - url: https://www.guntab.com/insights/
     type: Blog
   - url: https://www.guntab.com/insights/rss/
